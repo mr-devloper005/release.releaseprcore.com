@@ -1,0 +1,18 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#bg)"/>
+  
+  <!-- User silhouette -->
+  <circle cx="100" cy="70" r="25" fill="#ffffff" opacity="0.9"/>
+  <path d="M 100 95 Q 70 120, 70 150 L 130 150 Q 130 120, 100 95" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Decorative ring -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+</svg>
