@@ -1,33 +1,18 @@
 import Link from 'next/link'
 import { SITE_CONFIG } from '@/lib/site-config'
-import { fetchTaskPosts } from '@/lib/task-data'
-import { CATEGORY_OPTIONS, normalizeCategory } from '@/lib/categories'
 
 export const FOOTER_OVERRIDE_ENABLED = true
 
+const categories = [
+  { slug: 'business-finance', name: 'Business & Finance' },
+  { slug: 'technology', name: 'Technology' },
+  { slug: 'health', name: 'Health' },
+  { slug: 'consumer', name: 'Consumer Products' },
+  { slug: 'policy', name: 'Policy & Public Interest' },
+  { slug: 'people-culture', name: 'People & Culture' },
+]
 
-const getCategoryLabel = (value: string) => {
-  const normalized = normalizeCategory(value)
-  return CATEGORY_OPTIONS.find((item) => item.slug === normalized)?.name || value
-}
-
-
-export async function FooterOverride() {
-  const posts = await fetchTaskPosts('mediaDistribution', 200, { allowMockFallback: false })
-  const categories = Array.from(
-    new Map(
-      posts
-        .map((post) => {
-          const content = post.content && typeof post.content === 'object' ? (post.content as Record<string, unknown>) : {}
-          const raw = typeof content.category === 'string' ? content.category.trim() : ''
-          if (!raw) return null
-          const slug = normalizeCategory(raw)
-          return { slug, name: getCategoryLabel(raw) }
-        })
-        .filter((item): item is { slug: string; name: string } => Boolean(item))
-        .map((item) => [item.slug, item])
-    ).values()
-  ).slice(0, 8)
+export function FooterOverride() {
 
   return (
     <footer className="mt-16 border-t border-[#8d637f]/35 bg-[linear-gradient(180deg,#2d1630_0%,#49243e_100%)] text-[#f7ebf0]">
