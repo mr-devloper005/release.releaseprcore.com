@@ -3,14 +3,13 @@
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Plus, Save } from "lucide-react";
+import { ArrowLeft, Save } from "lucide-react";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { Footer } from "@/components/shared/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/lib/auth-context";
 import { CATEGORY_OPTIONS } from "@/lib/categories";
@@ -301,11 +300,6 @@ export default function CreateTaskPage() {
         </div>
 
         <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary">{taskConfig.label}</Badge>
-            <Badge variant="outline">Local-only</Badge>
-          </div>
-
           <div className="mt-6 grid gap-6">
             {formConfig.fields.map((field) => (
               <div key={field.key} className="grid gap-2">
@@ -392,13 +386,7 @@ export default function CreateTaskPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Button onClick={handleSubmit}>
               <Save className="mr-2 h-4 w-4" />
-              Save locally
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href={taskConfig.route}>
-                View {taskConfig.label}
-                <Plus className="ml-2 h-4 w-4" />
-              </Link>
+              Publish Post
             </Button>
           </div>
         </div>
